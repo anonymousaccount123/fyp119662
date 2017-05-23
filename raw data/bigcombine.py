@@ -20,6 +20,15 @@ newhiggs[:,:-1] = higgs
 newgluons=np.zeros((len(gluons),len(gluons[1])+1))
 newgluons[:,:-1] = gluons
 finalmatrix=np.concatenate((newgluons,newhiggs))
+
+
+
+for i in finalmatrix[:,:-1]:
+    for j,n in enumerate(i):
+        j=(j-min(i[:,[n]]) )/ (max(i[:,[n]]) - min(i[:,[n]]) )
+        
+        
+        
 np.random.shuffle(finalmatrix)
 
 np.savetxt("training.csv",finalmatrix[int(round(len(finalmatrix)/5)):],delimiter=",",fmt="%1.3f")
